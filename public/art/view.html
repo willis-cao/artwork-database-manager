@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Gallery Database - Art</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    
+    
+    <!-- Validator -->
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+    
+    <script type="module" src="view.js"></script> 
+  </head>
+  <body>
+    <!-- Nav bar (adapted from https://www.w3schools.com/bootstrap/bootstrap_templates.asp)-->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">Gallery Database</a>
+          </div>
+          <div class="collapse navbar-collapse" id="topNavbar">
+            <ul class="nav navbar-nav">
+              <li><a href="../front.html">Home</a></li>
+              <li><a href="../galleries/view.html">Galleries</a></li>
+              <li><a href="../exhibits/view.html">Exhibits</a></li>
+              <li class="active"><a href="../art/view.html">Art</a></li>
+              <li><a href="../visitors/register.html">Visitors</a></li>
+              <li><a href="../statistics/statistics.html">Statistics</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        
+      <div class="container-fluid text-center">    
+        <div class="row content">
+          <div class="col-sm-2 sidenav">
+            <p><a href="view.html">View Artworks</a></p>
+            <p><a href="register-art.html">Register an Artwork</a></p>
+            <p><a href="register-artist.html">Register an Artist</a></p>
+          </div>
+          <div class="col-sm-8 text-left"> 
+            <!-- Search form adapted from https://www.w3schools.com/bootstrap/bootstrap_forms.asp-->
+            <h3>View Artworks</h3>
+            <h5 style="font-weight:400;">See registered artworks along with information about their artists and current exhibits.</h5><hr>
+            <form class="form-horizontal" id="form-view-artworks" action="">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="text-search">Search:</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="text-search" placeholder="Enter an artwork title or ID #" name="text-search">
+                    </div>
+                </div>
+                <div class="form-group">  
+                    <label class="control-label col-sm-2">Filter by:</label>
+                    <label class="control-label col-sm-2" style="font-weight:400;">Year Created: </label> 
+                    <div class="col-sm-8">
+                      <input type="number" class="form-control" id="text-year-created" placeholder="e.g., 2023" name="text-year-created">
+                    </div>
+                </div>
+                <div class="form-group">  
+                  <label class="control-label col-sm-2"></label>
+                  <label class="control-label col-sm-2" style="font-weight:400;">Artist(s): </label>   
+                    <div class="col-sm-8"><select class="form-control" id="select-artist-multiple" size="4" multiple>
+                    </select></div>
+                </div> 
+                <div class="form-group">  
+                  <label class="control-label col-sm-2"></label>
+                  <label class="control-label col-sm-2" style="font-weight:400;">Owner(s): </label>   
+                    <div class="col-sm-8"><select class="form-control" id="select-owner-multiple" size="4" multiple>
+                    </select></div>
+                </div> 
+                <div class="form-group">  
+                  <label class="control-label col-sm-2"></label>
+                  <label class="control-label col-sm-2" style="font-weight:400;">Exhibit(s): </label>   
+                    <div class="col-sm-8"><select class="form-control" id="select-exhibit-multiple" size="4" multiple>
+                    </select><p align="right"><i>Use Ctrl/Cmd to select multiple options.</i></p></div>
+                </div>   
+              <div class="form-group" style="text-indent: 50%">  
+                <label class="control-label col-sm-2">Display:</label>    
+                <div class="checkbox">
+                  <label class="col-sm-2">Artwork:</label> 
+                  <!--
+                  <label class="col-sm-2"><input type="checkbox" id="checkbox-display-id" name="checkbox-display" checked>ID #</label>     -->
+                  <label class="col-sm-1"><input type="checkbox" id="checkbox-display-artwork-title" name="checkbox-display" checked>Title</label> 
+                  <label class="col-sm-1"><input type="checkbox" id="checkbox-display-artwork-year" name="checkbox-display" checked>Year</label>
+                  <label class="col-sm-3"><input type="checkbox" id="checkbox-display-artwork-description" name="checkbox-display" checked>Description</label>
+                  <label class="col-sm-3"><input type="checkbox" id="checkbox-display-artwork-owner" name="checkbox-display" checked>Owner</label>
+                  <br>
+                </div> 
+                <div class="checkbox">
+                  <label class="control-label col-sm-2"></label>  
+                  <label class="col-sm-2">Artist:</label> 
+                  <!--
+                  <label class="col-sm-2"><input type="checkbox" id="checkbox-display-id" name="checkbox-display" checked>ID #</label>     -->
+                  <label class="col-sm-1"><input type="checkbox" id="checkbox-display-artist-name" name="checkbox-display" checked>Name</label> 
+                  <label class="col-sm-1"></label>
+                  <label class="col-sm-3"><input type="checkbox" id="checkbox-display-artist-birth-year" name="checkbox-display" checked>Birth Year</label>
+                  <label class="col-sm-3"><input type="checkbox" id="checkbox-display-artist-death-year" name="checkbox-display" checked>Death Year</label>
+                  <br>               
+                </div>
+                <div class="checkbox">
+                  <label class="control-label col-sm-2"></label>  
+                  <label class="col-sm-2">Exhibit:</label> 
+                  <!--
+                  <label class="col-sm-2"><input type="checkbox" id="checkbox-display-id" name="checkbox-display" checked>ID #</label>     -->
+                  <label class="col-sm-1"><input type="checkbox" id="checkbox-display-exhibit-title" name="checkbox-display" checked>Title</label> 
+                  <label class="col-sm-1"><input type="checkbox" id="checkbox-display-exhibit-gallery" name="checkbox-display" checked>Gallery</label> 
+                  <label class="col-sm-3"><input type="checkbox" id="checkbox-display-exhibit-start-date" name="checkbox-display" checked>Start Date</label> 
+                  <label class="col-sm-3"><input type="checkbox" id="checkbox-display-exhibit-end-date" name="checkbox-display" checked>End Date</label>
+                </div>
+              </div>
+              <br>
+              <br>
+              <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">Search Artworks</button>
+                </div>
+              </div>
+            </form>        
+            <table class="table table-hover" id="table-artworks">
+              <thead>
+                <tr id="tr-artworks-colnames">
+                  <!-- 
+                  <th>ID #</th>
+                  <th>Title</th>
+                  <th>Year</th>
+                  <th>Description</th>
+                  <th>Artist</th>
+                  <th>Owner</th>
+                  <th>Exhibit</th> -->
+                </tr>
+              </thead>
+              <tbody id="tbody-artworks">
+                
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-2 sidenav">
+            <div class="well">
+              <p><b>Currently logged in as:</b></p>
+              Alexander Tsao
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer class="container-fluid text-center">
+        <!-- <p>Footer Text</p> -->
+      </footer>    
+  
+  </body>
+</html>

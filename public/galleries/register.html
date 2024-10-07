@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Gallery Database - Galleries</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>    
+    
+    <!-- Validator -->
+    <script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+
+    <script type="module" src="register.js"></script> 
+  </head>
+  <body>
+    <!-- Nav bar (adapted from https://www.w3schools.com/bootstrap/bootstrap_templates.asp)-->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">Gallery Database</a>
+          </div>
+          <div class="collapse navbar-collapse" id="topNavbar">
+            <ul class="nav navbar-nav">
+              <li><a href="../front.html">Home</a></li>
+              <li class="active"><a href="../galleries/view.html">Galleries</a></li>
+              <li><a href="../exhibits/view.html">Exhibits</a></li>
+              <li><a href="../art/view.html">Art</a></li>
+              <li><a href="../visitors/register.html">Visitors</a></li>
+              <li><a href="../statistics/statistics.html">Statistics</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+        
+      <div class="container-fluid text-center">    
+        <div class="row content">
+          <div class="col-sm-2 sidenav">
+            <p><a href="view.html">View Galleries</a></p>
+            <p><a href="register.html">Register a Gallery</a></p>
+          </div>
+          <div class="col-sm-8 text-left"> 
+            <!-- Search form adapted from https://www.w3schools.com/bootstrap/bootstrap_forms.asp-->
+            <h3>Register a Gallery</h3><hr>
+            <form class="form-horizontal" id="form-register-a-gallery" action="">
+              <div class="form-group">  
+                <label class="control-label col-sm-2">Type:</label>      
+                <div class="col-sm-10">
+                  <div class="radio">
+                    <label class="col-sm-3"><input type="radio" id="radio-type-museum" name="radio-type" checked>Museum</label>
+                    <label class="col-sm-3"><input type="radio" id="radio-type-art-gallery" name="radio-type">Art Gallery</label>
+                    <label class="col-sm-6"><input type="radio" id="radio-type-virtual-art-gallery" name="radio-type" >Virtual Art Gallery</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label col-sm-2" for="text-name">Name (required):</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="text-name" placeholder="e.g., Vancouver Art Gallery" name="text-name" required>
+                </div>
+              </div>
+              <div id="div-physical-group">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="text-address">Address:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="text-address" placeholder="e.g., 750 Hornby St" name="text-address">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="text-city">City:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="text-city" placeholder="e.g., Vancouver" name="text-city">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="text-state-province">State/Province:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="text-state-province" placeholder="e.g., BC" name="text-state-province">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="text-postal-code">Postal Code:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="text-postal-code" placeholder="e.g., V6Z 2H7" name="text-postal-code">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="text-country">Country:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="text-country" placeholder="e.g., Canada" name="text-country">
+                  </div>
+                </div>
+              </div>
+              <div id="div-virtual-group">
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="text-url">URL:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="text-url" placeholder="https://www.vanartgallery.bc.ca/" name="text-url">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">        
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default" id="button-register-gallery" name="button-register-gallery">Register Gallery</button>
+                </div>
+              </div>
+            </form>        
+          </div>
+          <div class="col-sm-2 sidenav">
+            <div class="well">
+              <p><b>Currently logged in as:</b></p>
+              Alexander Tsao
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer class="container-fluid text-center">
+        <!-- <p>Footer Text</p> -->
+      </footer>    
+  
+  </body>
+</html>

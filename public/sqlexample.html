@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+<div id="result">
+</div>
+
+
+<script>
+document.getElementById("result").innerHTML = "contacting backend server...";
+
+function postToServer(body) {
+	const xhr = new XMLHttpRequest();
+	xhr.open("POST", "http://localhost:3000/sql");
+	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8")
+	xhr.onload = () => {
+	  if (xhr.readyState == 4 && xhr.status == 200) {
+		document.getElementById("result").innerHTML = xhr.responseText;
+	  } else {
+		document.getElementById("result").innerHTML = xhr.status;
+	  }
+	};
+	document.getElementById("result").innerHTML = "sending...";
+	xhr.send(body);
+	document.getElementById("result").innerHTML = "sent. waiting for result.";
+}
+
+var sqlToSend = JSON.stringify({
+	sql: "SELECT * FROM test;"
+});
+
+postToServer(sqlToSend);
+</script>
+
+</body>
+</html>
